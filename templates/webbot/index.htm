@@ -1,73 +1,119 @@
 <!doctype html>
 <html lang="en">
-<style>
-  .container-fluid {
-    height: 100%;
-  }
-
-  .chat-col {
-    height: 100%;
-    overflow: auto;
-  }
-
-  .history-col {
-    background-color: #f8f9fa;
-    height: 100%;
-    align-items: end;
-    overflow: auto;
-  }
-</style>
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
   <title>JARVIS The Chatbot</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    crossorigin="anonymous">
+  <style>
+    html,
+    body {
+      height: 100vh;
+      min-height: 100vh;
+      background: #181a1b !important;
+      color: #f1f1f1 !important;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container-fluid,
+    .row {
+      min-height: 100vh;
+      height: 100vh;
+    }
+
+    .chat-col {
+      height: 100%;
+      overflow: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .history-col {
+      background-color: #23272b !important;
+      min-height: 100vh;
+      height: 100%;
+      overflow: auto;
+      color: #f1f1f1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .card,
+    .card-header,
+    .card-body {
+      background-color: #23272b !important;
+      color: #f1f1f1 !important;
+      border: none;
+    }
+
+    .form-control,
+    .form-control:focus {
+      background-color: #181a1b !important;
+      color: #f1f1f1 !important;
+      border: 1px solid #444;
+    }
+
+    .btn-outline-danger {
+      color: #fff;
+      background-color: #d9534f;
+      border-color: #d43f3a;
+    }
+
+    .btn-outline-danger:hover {
+      background-color: #c9302c;
+      border-color: #ac2925;
+      color: #fff;
+    }
+
+    .user_info h2,
+    .user_info h5 {
+      color: #f1f1f1 !important;
+    }
+
+    .history-col .card-header {
+      border-bottom: 1px solid #444;
+      font-weight: bold;
+      color: #ffb347 !important;
+      background: #23272b !important;
+    }
+
+    .history-col ul {
+      padding-left: 1rem;
+    }
+
+    .history-col li {
+      color: #f1f1f1;
+      margin-bottom: 0.5rem;
+      word-break: break-all;
+    }
+
+    /* Scrollbar styling */
+    ::-webkit-scrollbar {
+      width: 8px;
+      background: #23272b;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #444;
+      border-radius: 4px;
+    }
+  </style>
 </head>
 
-<body style="background-image: url('https://www.ibm.com/content/dam/connectedassets-adobe-cms/worldwide-content/other/ul/g/90/34/90341b6b-a78f-404d-a77d50a280840189.component.xl.ts=1701117174715.png/content/adobe-cms/us/en/topics/chatbots/_jcr_content/root/leadspace');">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#" style="font-weight: bold; font-size: 24px;"> JARVIS </a>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="http://127.0.0.1:8000/">Home</a>
-        </li>
-        <h3 style="color: #9ba0a5;">|</h3>
-        <li class="nav-item active">
-          <a class="nav-link" href="https://www.linkedin.com/feed/" target="_blank">About</a>
-        </li>
-        <h3 style="color: #9ba0a5;">|</h3>
-        <li class="nav-item active">
-          <a class="nav-link" href="Team.htm" target="_blank">Our Team</a>
-        </li>
-        <h3 style="color: #9ba0a5;">|</h3>
-        <li class="nav-item active">
-          <a class="nav-link" href="https://publuu.com/flip-book/365824/834264" target="_blank">Synopsis</a>
-        </li>
-        <h3 style="color: #9ba0a5;">|</h3>
-        <li class="nav-item active">
-          <a class="nav-link" href="https://publuu.com/flip-book/365824/834296" target="_blank">PPT</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  <br>
-
-  <div class="container-fluid h-100">
+<body>
+  <div class="container-fluid">
     <div class="row justify-content-center h-100">
-      <div class="col-md-12 col-xl-8 chat ml-auto" style="height: 400px; vertical-align:middle; ">
-        <div class="card">
+      <div class="col-md-12 col-xl-8 chat-col ml-auto">
+        <div class="card w-100">
           <div class="card-header msg_head">
             <div class="d-flex bd-highlight">
               <div class="img_cont">
-                <img
-                  src="https://i.ibb.co/xmq5TbL/logo.png"
-                   width="110">
+                <img src="https://i.ibb.co/xmq5TbL/logo.png" width="110">
                 <span class="online_icon"></span>
               </div>
               <div class="user_info">
@@ -76,35 +122,27 @@
               </div>
             </div>
           </div>
-          <div id="messageFormeight" class="card-body msg_card_body">
-
-
-          </div>
+          <div id="messageFormeight" class="card-body msg_card_body"></div>
           <div class="container" style="padding-top: 2%; margin-bottom: 50px;">
-            <form action="/bot_search/" method="GET" class="form-inline">
+            <form id="queryForm" action="/bot_search/" method="GET" class="form-inline">
               <div class="form-group mr-2">
-                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                <input type="text" class="form-control" id="queryInput" aria-describedby="emailHelp"
                   placeholder="Enter your Query" name="query" style="width: 660px;">
               </div>
               <button type="submit" class="btn btn-outline-danger">SEARCH</button>
             </form>
-          
             {% if ans %}
-            <h5 style="color: rgb(0, 0, 0); padding-top: 2%; ">Here are the Result for " {{query}} ":</h4>
-            <h6 style="padding-top: 2%; color: rgb(0, 0, 0); height: 2.4in; overflow-y: auto;">{{ans}}</h4>
+            <h5 style="color: #ffb347; padding-top: 2%;">Here are the Result for " {{query}} ":</h5>
+            <h6 style="padding-top: 2%; color: #f1f1f1; height: 2.4in; overflow-y: auto;">{{ans}}</h6>
             {% endif %}
           </div>
-          
-
-
         </div>
       </div>
       <!-- Chat History Column -->
-      <div class="col-md-12 col-xl-2 history-col ml-auto" style="height: 510px; vertical-align: baseline;">
-        <!-- Your chat history content goes here -->
-        <div class="card">
+      <div class="col-md-12 col-xl-2 history-col ml-auto">
+        <div class="card h-100">
           <div class="card-header">
-            Last Chat History
+            Previous Searches
           </div>
           <div class="card-body">
             <ul id="queryList"></ul>
@@ -113,46 +151,34 @@
       </div>
     </div>
   </div>
-
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
-
   <script>
-    // Initialize an array to store queries
-    let queries = [];
-
-    // Function to add a new query
+    // Load previous queries from localStorage
+    let queries = JSON.parse(localStorage.getItem('queries') || "[]");
     function addQuery(query) {
-      queries.push(query);
-      updateQueryList();
+      if (query && !queries.includes(query)) {
+        queries.push(query);
+        localStorage.setItem('queries', JSON.stringify(queries));
+        updateQueryList();
+      }
     }
-
-    // Function to update the query list in the HTML
     function updateQueryList() {
       const queryListElement = document.getElementById('queryList');
-      // Clear existing list items
       queryListElement.innerHTML = '';
-
-      // Loop through the queries array and append each query to the list
-      queries.forEach((singleQuery) => {
+      queries.slice().reverse().forEach((singleQuery) => {
         const listItem = document.createElement('li');
         listItem.textContent = singleQuery;
         queryListElement.appendChild(listItem);
       });
     }
-
-    // Example: Add queries when a search is performed
-    addQuery('{{query}}');
+    updateQueryList();
+    document.getElementById('queryForm').addEventListener('submit', function (e) {
+      const queryInput = document.getElementById('queryInput');
+      addQuery(queryInput.value.trim());
+    });
+    {% if query %}
+    addQuery("{{query}}");
+    {% endif %}
   </script>
 </body>
 
-</html> 
+</html>
